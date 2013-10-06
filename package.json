@@ -1,0 +1,20 @@
+{
+    "name": "Boilerplate",
+    "version": "0.0.0",
+    "description": "Basic web boilerplate with twitter bootstrap, angular, less and more with grunt support",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": "",
+    "keywords": [
+        "grunt",
+        "angular",
+        "angularjs",
+        "bootstrap",
+        "less"
+    ],
+    "author": "Christopher Strolia-Davis",
+    "license": "MIT",
+    "gitHead": "f533c55112209cde63aff795af5b12beec9109ff"
+}
