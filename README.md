@@ -1,4 +1,7 @@
 # automated-web-boilerplate
+
+Note:This is still a work in progress. I expect it will still be a few weeks before it is near completion. (CS 10/6/2013)
+
 ## Simple automated web development boilerplate
 
 This is a basic website starting point which integrates support for technologies such as Angular, twitter bootstrap,
