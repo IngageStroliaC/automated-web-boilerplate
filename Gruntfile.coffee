@@ -12,9 +12,11 @@ module.exports = (grunt) ->
     dev:
       task: 'dev'
       pkg: pkg
+      min: ''
     prod:
       task: 'prod'
       pkg: pkg
+      min: '.min'
 
   # creates an object with a processContent function that will handle appropriate
   # replacements in copied files
@@ -35,12 +37,12 @@ module.exports = (grunt) ->
       dev:
         options: copyOps 'dev'
         files: [
-          expand: true, cwd: 'dev/', src: ['**'], dest: 'public/'
+          expand: true, cwd: 'dev/', src: ['**', '!**/*.min.*'], dest: 'public/'
         ]
       prod:
         options: copyOps 'prod'
         files: [
-          expand: true, cwd: 'dev/', src: ['**'], dest: 'public/'
+          expand: true, cwd: 'dev/', src: ['**/*.{png,jpg,gif,ico,svg,html}', '**/*.min.{css,js,map}'], dest: 'public/'
         ]
 
   # create a task called dev that will run whenever we call 'grunt dev' from the command line

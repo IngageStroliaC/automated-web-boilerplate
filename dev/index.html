@@ -2,6 +2,8 @@
 <html>
 <head>
     <title><%= pkg.name %><%= task === 'dev' ? ' (Development)' : '' %></title>
+    <link rel="stylesheet" href="libs/bootstrap/v2.3.2/css/bootstrap<%= min %>.css"/>
+    <link rel="stylesheet" href="libs/bootstrap/v2.3.2/css/bootstrap-responsive<%= min %>.css"/>
 </head>
 <body>
 <h1><%= pkg.name %></h1>
@@ -9,5 +11,6 @@
 <h2><%= pkg.description %></h2>
 
 <footer>ver. <%= pkg.version %>, Copyright &copy; <%= grunt.template.today('yyyy') %></footer>
+<script src="libs/bootstrap/v2.3.2/js/bootstrap<%= min %>.js"></script>
 </body>
 </html>
