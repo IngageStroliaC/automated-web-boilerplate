@@ -18,6 +18,8 @@ module.exports = (grunt) ->
       pkg: pkg
       min: '.min'
 
+  devSrcFiles = ['**', '!**/*.min.*','!**/*.{png,jpg,gif,ico,pdf}']
+
   # creates an object with a processContent function that will handle appropriate
   # replacements in copied files
   copyOps = (taskName) ->
@@ -29,7 +31,7 @@ module.exports = (grunt) ->
     pkg: pkg
 
   # the clean task removes the directories specified and all their content
-    clean: ['public']
+    clean: ['public/**/*']
 
   # the copy task will copy all files from src, within the cwd location, to the dest folder
   # glob patterns are used to determine which files to copy
@@ -41,7 +43,7 @@ module.exports = (grunt) ->
       dev:
         options: copyOps 'dev'
         files: [
-          expand: true, cwd: 'dev/', src: ['**', '!**/*.min.*','!**/*.{png,jpg,gif,ico,pdf}'], dest: 'public/'
+          expand: true, cwd: 'dev/', src: devSrcFiles, dest: 'public/'
         ]
       prod:
         options: copyOps 'prod'
@@ -49,8 +51,15 @@ module.exports = (grunt) ->
           expand: true, cwd: 'dev/', src: ['**/*.{svg,html}', '**/*.min.{css,js,map}','!**/*.{png,jpg,gif,ico,pdf}'], dest: 'public/'
         ]
 
+    watch:
+      dev:
+        files:devSrcFiles
+        tasks:['clean', 'copy:dev', 'copy:bin']
+        options:
+          debounceDelay:2000
+
   # create a task called dev that will run whenever we call 'grunt dev' from the command line
-  grunt.registerTask 'dev', ['clean', 'copy:dev', 'copy:bin']
+  grunt.registerTask 'dev', ['watch:dev']
 
   # create a task called prod that will run whenever we call 'grunt prod' from the command line
   grunt.registerTask 'prod', ['clean', 'copy:prod', 'copy:bin']
