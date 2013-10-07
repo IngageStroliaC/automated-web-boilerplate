@@ -1,4 +1,5 @@
-# Simple website boilerplate for training
+# automated-web-boilerplate
+## Simple automated web development boilerplate
 
 This is a basic website starting point which integrates support for technologies such as Angular, twitter bootstrap,
 less, grunt and other commonly used website technologies.

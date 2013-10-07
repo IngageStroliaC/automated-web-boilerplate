@@ -1,5 +1,5 @@
 {
-  "name": "Boilerplate",
+  "name": "automated-web-boilerplate",
   "version": "0.0.0",
   "description": "Basic web boilerplate with twitter bootstrap, angular, less and more with grunt support",
   "main": "index.js",
