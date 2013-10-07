@@ -7,6 +7,21 @@ module.exports = (grunt) ->
   # this saves us the hassle of needing to load each one manually
   grunt.loadNpmTasks dep for dep, ver of pkg.devDependencies when 'grunt-' is dep.slice 0, 6
 
+  # task specific information
+  taskOptions =
+    dev:
+      task: 'dev'
+      pkg: pkg
+    prod:
+      task: 'prod'
+      pkg: pkg
+
+  # creates an object with a processContent function that will handle appropriate
+  # replacements in copied files
+  copyOps = (taskName) ->
+    processContent: (content, srcpath) ->
+      grunt.template.process content, data: taskOptions[taskName]
+
   # initConfig sets up the grunt task options
   grunt.initConfig
     pkg: pkg
@@ -18,12 +33,21 @@ module.exports = (grunt) ->
   # glob patterns are used to determine which files to copy
     copy:
       dev:
+        options: copyOps 'dev'
+        files: [
+          expand: true, cwd: 'dev/', src: ['**'], dest: 'public/'
+        ]
+      prod:
+        options: copyOps 'prod'
         files: [
           expand: true, cwd: 'dev/', src: ['**'], dest: 'public/'
         ]
 
   # create a task called dev that will run whenever we call 'grunt dev' from the command line
   grunt.registerTask 'dev', ['clean', 'copy:dev']
+
+  # create a task called prod that will run whenever we call 'grunt prod' from the command line
+  grunt.registerTask 'prod', ['clean', 'copy:prod']
 
   # set up the default to run whenever 'grunt' is called from the command line without args.
   grunt.registerTask 'default', ['dev']

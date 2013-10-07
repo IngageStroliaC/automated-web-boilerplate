@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>[Insert a page title here]</title>
+    <title><%= pkg.name %><%= task === 'dev' ? ' (Development)' : '' %></title>
 </head>
 <body>
-[Insert a page title here, too]
+<h1><%= pkg.name %></h1>
+
+<h2><%= pkg.description %></h2>
+
+<footer>ver. <%= pkg.version %>, Copyright &copy; <%= grunt.template.today('yyyy') %></footer>
 </body>
 </html>
